@@ -47,3 +47,25 @@ The simple method to remove them is by adding an if condition after update and d
 Decrement i by 1 after splice to make sure the next object is correctly updated and animated after you remove its neighbour
 To keep event listeners clean, create a function called createAnimation and copy paste the code of your event listener into createAnimation and pass event (or e if you use e) as the parameter
 Call createAnimation with argument event in the event listener
+You can use the mouseover event listener to get a dust cloud effect when you move your cursor on the canvas
+Currently, the explosion created at each frame use the same sprite
+To get a different sprite at each frame, you can employ the save and restore html canvas method
+To do that, add a save function on ctx at the start of draw function and a restore function on ctx at the end of draw
+You want to rotate around its center so add a translate function on ctx after save with parameters x and y
+Now add a rotate function on ctx using angle as parameter
+You currently do not have an angle property so add angle to your constructor
+Assign a randomised value from 0 to 6.2 (6.2 is the radian of a circle(360 degrees))
+Now you can use it in the rotate function
+Notice that the rotation is very wide as you are using x and y coordinate which in the constructor is already being offset by the width and height. This is further compounded by the dx and dy in drawImage being x and y too which increases the distance even further
+To fix it, firstly, dx and dy should be 0 because you are already using them in the translate function
+Now offset dx and dy by the aspect ratio of width and height respectively (this.width/2 and height which you use for xy in the constructor)
+Remove the offset of xy in the constructor
+Now when you mouseover the canvas the rotation should center around your cursor
+The methods in the draw function is how you center anything in canvas
+Comment out the mouseover event listener to get back to your click event listener
+Download sound effect magic sfx in opengameart.org and extract the ice attack sound and put it in your project folder
+Add sound property in the constructor and assign new Audio method to it
+Link the source below it just like how you did for your image
+Add an if condition at the start of update where if frame is 0, call the built in play method on sound
+Your clicks should have sound now
+Done
